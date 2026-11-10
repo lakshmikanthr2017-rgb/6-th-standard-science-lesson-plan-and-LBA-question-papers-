@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6ನೇ ತರಗತಿ ವಿಜ್ಞಾನ - LBA & 5E Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f6f7; color: #2c3e50; margin: 0; padding: 0; }
+        header { background-color: #1b4f72; color: white; padding: 10px; text-align: center; }
+        .container { max-width: 800px; margin: 20px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .page { display: none; }
+        .page.active { display: block; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #117a65; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 16px; width: 100%; margin-top: 10px; }
+        button:hover { background-color: #0e6655; }
+        .btn-secondary { background-color: #7f8c8d; }
+        footer { background-color: #1b4f72; color: white; text-align: center; padding: 10px; margin-top: 20px; font-weight: bold; }
+        @media print {
+            footer, button, .no-print { display: none !important; }
+            body { background: white; }
+            .container { box-shadow: none; margin: 0; width: 100%; padding: 0; }
+            @page { size: A4 portrait; margin: 10mm; }
+        }
+        .preview-box { border: 1px dashed #ccc; padding: 15px; margin-bottom: 15px; background: #fdfdfd; }
+        .question-item { margin-bottom: 10px; line-height: 1.4; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2>6ನೇ ತರಗತಿ ವಿಜ್ಞಾನ - LBA ಪ್ರಶ್ನೆ ಪತ್ರಿಕೆ ಹಾಗೂ ಪಾಠ ಯೋಜನೆ</h2>
+    </header>
+
+    <div class="container">
+        <!-- PAGE 1 -->
+        <div id="page-entry" class="page active">
+            <h3>ವಿವರಗಳನ್ನು ಭರ್ತಿ ಮಾಡಿ</h3>
+            <form id="entryForm">
+                <div class="form-group">
+                    <label>ಶಾಲೆಯ ಹೆಸರು:</label>
+                    <input type="text" id="school" required placeholder="ಶಾಲೆಯ ಹೆಸರು ನಮೂದಿಸಿ">
+                </div>
+                <div class="form-group">
+                    <label>ಕ್ಲಸ್ಟರ್ ಹೆಸರು:</label>
+                    <input type="text" id="cluster" required placeholder="ಕ್ಲಸ್ಟರ್ ಹೆಸರು ನಮೂದಿಸಿ">
+                </div>
+                <div class="form-group">
+                    <label>ತಾಲ್ಲೂಕು ಹೆಸರು:</label>
+                    <input type="text" id="taluk" required placeholder="ತಾಲ್ಲೂಕು ಹೆಸರು ನಮೂದಿಸಿ">
+                </div>
+                <div class="form-group">
+                    <label>ಶಿಕ್ಷಕರ ಹೆಸರು:</label>
+                    <input type="text" id="teacher" required placeholder="ನಿಮ್ಮ ಹೆಸರು ನಮೂದಿಸಿ">
+                </div>
+                <div class="form-group">
+                    <label>ಅಧ್ಯಾಯವನ್ನು ಆಯ್ಕೆಮಾಡಿ:</label>
+                    <select id="lesson" required>
+                        <option value="">-- ಆಯ್ಕೆಮಾಡಿ --</option>
+                        <option value="ch1">ಅಧ್ಯಾಯ 1: ವಿಜ್ಞಾನದ ಅದ್ಭುತ ಪ್ರಪಂಚ</option>
+                        <option value="ch2">ಅಧ್ಯಾಯ 2: ಜೀವಜಗತ್ತಿನಲ್ಲಿ ವೈವಿಧ್ಯತೆ</option>
+                        <option value="ch3">ಅಧ್ಯಾಯ 3: ಮನದುಂಬಿದ ಊಟ</option>
+                        <option value="ch4">ಅಧ್ಯಾಯ 4: ಕಾಂತಗಳ ಅನ್ವೇಷಣೆ</option>
+                        <option value="5">ಅಧ್ಯಾಯ 5: ಉದ್ದದ ಅಳತೆ ಮತ್ತು ಚಲನೆ</option>
+                        <option value="6">ಅಧ್ಯಾಯ 6: ನಮ್ಮ ಸುತ್ತಲಿನ ಸಾಮಗ್ರಿಗಳು</option>
+                        <option value="7">ಅಧ್ಯಾಯ 7: ತಾಪ ಮತ್ತು ಅದರ ಮಾಪನ</option>
+                        <option value="8">ಅಧ್ಯಾಯ 8: ನೀರಿನ ಸ್ಥಿತಿಗಳ ಮೂಲಕ ಒಂದು ಪಯಣ</option>
+                        <option value="9">ಅಧ್ಯಾಯ 9: ದೈನಂದಿನ ಜೀವನದಲ್ಲಿ ಬೇರ್ಪಡಿಸುವಿಕೆ</option>
+                        <option value="10">ಅಧ್ಯಾಯ 10: ಜೀವಿಗಳು: ಅವುಗಳ ಗುಣಗಳ ಅನ್ವೇಷಣೆ</option>
+                        <option value="11">ಅಧ್ಯಾಯ 11: ನಮ್ಮ ಸುತ್ತಲಿನ ಬದಲಾವಣೆಗಳು</option>
+                        <option value="12">ಅಧ್ಯಾಯ 12: ಬೆಳಕು - ನೆರಳುಗಳು ಮತ್ತು ಪ್ರತಿಬಿಂಬಗಳು</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>ಪ್ರಶ್ನೆ ಪತ್ರಿಕೆ ಸೆಟ್:</label>
+                    <select id="qset">
+                        <option value="set1">ಸೆಟ್ 1 (ಪ್ರಮಾಣಿತ ಪ್ರಶ್ನೆಗಳು)</option>
+                        <option value="set2">ಸೆಟ್ 2 (ಪರ್ಯಾಯ ಪ್ರಶ್ನೆಗಳು)</option>
+                    </select>
+                </div>
+                <button type="button" onclick="makeQP()">ಪ್ರಶ್ನೆ ಪತ್ರಿಕೆ ರಚಿಸಿ</button>
+                <button type="button" onclick="makeLP()" class="btn-secondary" style="margin-top:10px;">5E ಪಾಠ ಯೋಜನೆ ರಚಿಸಿ</button>
+            </form>
+        </div>
+
+        <!-- PAGE 2: QP -->
+        <div id="page-qp" class="page">
+            <div class="no-print" style="margin-bottom: 10px;">
+                <button onclick="window.print()">ಪ್ರಿಂಟ್ ಮಾಡಿ</button>
+                <button onclick="goPage('page-entry')" class="btn-secondary" style="margin-top:5px;">ಹಿಂದಕ್ಕೆ</button>
+            </div>
+            <div class="preview-box" id="qpContent"></div>
+        </div>
+
+        <!-- PAGE 3: LP -->
+        <div id="page-lp" class="page">
+            <div class="no-print" style="margin-bottom: 10px;">
+                <button onclick="window.print()">ಪ್ರಿಂಟ್ ಮಾಡಿ</button>
+                <button onclick="goPage('page-entry')" class="btn-secondary" style="margin-top:5px;">ಹಿಂದಕ್ಕೆ</button>
+            </div>
+            <div class="preview-box" id="lpContent"></div>
+        </div>
+    </div>
+
+    <footer>
+        <span style="color: #00ffcc; font-weight: bold;">prepared by : LAKSHMIKANTH R MOB : 9844444871</span>
+    </footer>
+
+    <script>
+        function goPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        function makeQP() {
+            const school = document.getElementById('school').value;
+            const cluster = document.getElementById('cluster').value;
+            const taluk = document.getElementById('taluk').value;
+            const teacher = document.getElementById('teacher').value;
+            const lesson = document.getElementById('lesson').value;
+
+            if(!school || !cluster || !taluk || !teacher || !lesson) {
+                alert('ದಯವಿಟ್ಟು ಎಲ್ಲಾ ವಿವರಗಳನ್ನು ಭರ್ತಿ ಮಾಡಿ!');
+                return;
+            }
+
+            let html = `
+                <div style="text-align:center;">
+                    <h3>${school}</h3>
+                    <p>ಕ್ಲಸ್ಟರ್: ${cluster} | ತಾಲ್ಲೂಕು: ${taluk}</p>
+                    <h4>6ನೇ ತರಗತಿ ವಿಜ್ಞಾನ - ಘಟಕ ಆಧಾರಿತ ಮೌಲ್ಯಮಾಪನ (LBA)</h4>
+                    <p><b>ಅವಧಿ: 45 ನಿಮಿಷಗಳು | ಒಟ್ಟು ಅಂಕಗಳು: 20 (ಲಿಖಿತ: 15 + ಮೌಖಿಕ: 5)</b></p>
+                </div>
+                <hr>
+                <p><b>ಶಿಕ್ಷಕರು:</b> ${teacher}</p>
+                <hr>
+                <div class="question-item">
+                    <h4>ಭಾಗ - ಅ: ಬಹುಆಯ್ಕೆ ಪ್ರಶ್ನೆಗಳು (MCQs) [3 × 1 = 3 ಅಂಕಗಳು]</h4>
+                    <p>1. ವಿಜ್ಞಾನದ ಮುಖ್ಯ ಆಧಾರವೇನು?<br>(ಎ) ಅವಲೋಕನ ಮತ್ತು ಪ್ರಯೋಗ (ಬಿ) ಊಹೆ (ಸಿ) ಕಥೆ (ಡಿ) ಯಾವುದು ಅಲ್ಲ</p>
+                    <p>2. ವೈಜ್ಞಾನಿಕ ವಿಧಾನದ ಮೊದಲ ಹಂತ ಯಾವುದು?<br>(ಎ) ಅವಲೋಕನ (ಬಿ) ತೀರ್ಮಾನ (ಸಿ) ಖರೀದಿ (ಡಿ) ಪ್ರಯೋಗ</p>
+                    <p>3. ಪ್ರಶ್ನೆಗಳನ್ನು ಕೇಳಿ ಉತ್ತರನ್ನು ಹುಡುಕುವ ಪ್ರಕ್ರಿಯೆ ಏನು?<br>(ಎ) ವಿಜ್ಞಾನ (ಬಿ) ಆಟ (ಸಿ) ಸಂಗೀತ (ಡಿ) ಚಿತ್ರಕಲೆ</p>
+                </div>
+                <div class="question-item">
+                    <h4>ಭಾಗ - ಬ: ಎರಡು ಅಂಕಗಳ ಪ್ರಶ್ನೆಗಳು [2 × 2 = 4 ಅಂಕಗಳು]</h4>
+                    <p>1. ವಿಜ್ಞಾನ ಎಂದರೇನು? ವಿವರಿಸಿ.</p>
+                    <p>2. ವೈಜ್ಞಾನಿಕ ವಿಧಾನದ ಪ್ರಮುಖ ಎರಡು ಹಂತಗಳನ್ನು ಹೆಸರಿಸಿ.</p>
+                </div>
+                <div class="question-item">
+                    <h4>ಭಾಗ - ಕ: ನಾಲ್ಕು ಅಂಕಗಳ ಪ್ರಶ್ನೆಗಳು [2 × 4 = 8 ಅಂಕಗಳು]</h4>
+                    <p>1. ದೈನಂದಿನ ಜೀವನದಲ್ಲಿ ವೈಜ್ಞಾನಿಕ ವಿಧಾನವನ್ನು ಅನುಸರಿಸುವ ಒಂದು ಸನ್ನಿವೇಶವನ್ನು ವಿವರಿಸಿ.</p>
+                    <p>2. ವಿಜ್ಞಾನದ ಅಧ್ಯಯನವು ನಮ್ಮ ದೈನಂದಿನ ಜೀವನದ ಸಮಸ್ಯೆಗಳನ್ನು ಹೇಗೆ ಪರಿಹರಿಸುತ್ತದೆ?</p>
+                </div>
+                <div class="question-item">
+                    <h4>ಭಾಗ - ಡ: ಮೌಖಿಕ ಪ್ರಶ್ನೆಗಳು [5 ಅಂಕಗಳು]</h4>
+                    <p>1. ವಿಜ್ಞಾನದ ಮೂಲ ಉದ್ದೇಶವೇನು?<br>2. ನಿಮಗೆ ತಿಳಿದಿರುವ ಪ್ರಸಿದ್ಧ ವಿಜ್ಞಾನಿ ಯಾರು?</p>
+                </div>
+            `;
+            document.getElementById('qpContent').innerHTML = html;
+            goPage('page-qp');
+        }
+
+        function makeLP() {
+            const school = document.getElementById('school').value;
+            const teacher = document.getElementById('teacher').value;
+
+            if(!school || !teacher) {
+                alert('ದಯವಿಟ್ಟು ಕನಿಷ್ಠ ಶಾಲೆಯ ಹೆಸರು ಮತ್ತು ಶಿಕ್ಷಕರ ಹೆಸರನ್ನು ಭರ್ತಿ ಮಾಡಿ!');
+                return;
+            }
+
+            let html = `
+                <div style="text-align:center;">
+                    <h3>${school}</h3>
+                    <h4>5E ಕಲಿಕಾ ಮಾದರಿ ಪಾಠ ಯೋಜನೆ (5E Lesson Plan)</h4>
+                    <p><b>ಶಿಕ್ಷಕರು:</b> ${teacher}</p>
+                </div>
+                <hr>
+                <p><b>1. ತೊಡಗಿಸಿಕೊಳ್ಳುವುದು (Engage):</b> ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಸುತ್ತಲಿನ ವಿಸ್ಮಯಕಾರಿ ಸಂಗತಿಗಳ ಬಗ್ಗೆ ಪ್ರಶ್ನೆಗಳನ್ನು ಕೇಳಿ ಕುತೂಹಲ ಕೆರಳಿಸುವುದು.</p>
+                <p><b>2. ಅನ್ವೇಷಿಸುವುದು (Explore):</b> ಸಣ್ಣ ಪ್ರಾಯೋಗಿಕ ವೀಕ್ಷಣೆಗಳು ಹಾಗೂ ಚಟುವಟಿಕೆಗಳನ್ನು ತರಗತಿಯಲ್ಲಿ ನಡೆಸುವುದು.</p>
+                <p><b>3. ವಿವರಿಸುವುದು (Explain):</b> ವಿಜ್ಞಾನದ ಮೂಲ ಪರಿಕಲ್ಪನೆಗಳು ಮತ್ತು ವೈಜ್ಞಾನಿಕ ವಿಧಾನದ ಹಂತಗಳನ್ನು ವಿವರವಾಗಿ ತಿಳಿಸುವುದು.</p>
+                <p><b>4. ವಿಸ್ತರಿಸುವುದು (Elaborate):</b> ದೈನಂದಿನ ಜೀವನದಲ್ಲಿ ವಿಜ್ಞಾನದ ಅನ್ವಯಗಳು ಮತ್ತು ಅದರ ಪ್ರಾಮುಖ್ಯತೆಯನ್ನು ಚರ್ಚಿಸುವುದು.</p>
+                <p><b>5. ಮೌಲ್ಯಮಾಪನ (Evaluate):</b> ಮೌಖಿಕ ಪ್ರಶ್ನೆಗಳು ಹಾಗೂ ಲಿಖಿತ ಮೌಲ್ಯಮಾಪನ ಪರೀಕ್ಷೆ ನಡೆಸುವುದು.</p>
+            `;
+            document.getElementById('lpContent').innerHTML = html;
+            goPage('page-lp');
+        }
+    </script>
+</body>
+</html>
